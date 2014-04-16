@@ -10,61 +10,68 @@ Author URI: http://gunnjerkens.com
 
 class adminApproval {
 
+  function __construct() {
+
+    add_filter('manage_users_columns', array( &$this, 'add_column' ));
+    add_action('manage_users_custom_column', array(&$this, 'get_column_content'), 10, 3);
+
+    add_action('show_user_profile', array( &$this, 'admin_fields' ));
+    add_action('edit_user_profile', array( &$this, 'admin_fields' ));
+  }
+
+  function add_column($columns) {
+    $columns['approval_status'] = 'User Status';
+    return $columns;
+  }
+
+  function get_column_content($value, $column_name, $user_id) {
+    $user = get_userdata( $user_id );
+    if ( 'approval_status' == $column_name )
+      $value = get_user_meta($user_id, 'approval_status', true);
+      return $value;
+  }
+
+  function admin_fields($user) {
+    $status = get_user_meta($user->ID, 'approval_status', true);
+
+    $approved = '';
+    $pending = '';
+    $denied = '';
+
+    if($status === 'Approved') {
+      $approved = 'selected';
+    } else if ($status === 'Pending') {
+      $pending = 'selected';
+    } else if ($status === 'Denied' ) {
+      $denied = 'selected';
+    }
+    echo '
+      <h3>Admin Options</h3>
+      <table class="form-table">
+        <tr>
+          <th><label for="Approval Status">Approval Status</label></th>
+          <td>
+            <select name="approval_status">
+              <option value="Approved" '.$approved.'>Approved</option>
+              <option value="Pending" '.$pending.'>Pending</option>
+              <option value="Denied" '.$denied.'>Denied</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+    ';
+  }
+
+
 
 }
 new adminApproval();
 
 
+add_action( 'personal_options_update', 'save_admin_fields' );
+add_action( 'edit_user_profile_update', 'save_admin_fields' );
 
-
-add_filter('manage_users_columns', 'add_column');
-function add_column($columns) {
-  $columns['approval_status'] = 'User Status';
-  return $columns;
-}
- 
-add_action('manage_users_custom_column', 'get_column_content', 10, 3);
-function get_column_content($value, $column_name, $user_id) {
-  $user = get_userdata( $user_id );
-  if ( 'approval_status' == $column_name )
-    $value = get_user_meta($user_id, 'approval_status', true);
-    return $value;
-}
-
-//if(current_user_can('edit_users')) {
-  add_action( 'show_user_profile', 'extra_user_profile_fields' );
-  add_action( 'edit_user_profile', 'extra_user_profile_fields' );
-//}
-
-function extra_user_profile_fields($user) {
-  $status = get_user_meta($user->ID, 'approval_status', true);
-  var_dump($status);
-  ?>
-
-<h3>User Administration Options</h3>
-
-<table class="form-table">
-<tr>
-<th><label for="Approval Status"><?php _e("Approval Status"); ?></label></th>
-<td>
-<select name="approval_status">
-<option value="Approved" <?php if($status==='Approved') echo 'selected'; ?>>Approved</option>
-<option value="Pending" <?php if($status==='Pending') echo 'selected'; ?>>Pending</option>
-<option value="Denied" <?php if($status==='Denied') echo 'selected'; ?>>Denied</option>
-</select>
-</td>
-</tr>
-</table>
-
-<?php }
-
-add_action( 'personal_options_update', 'save_extra_user_profile_fields' );
-add_action( 'edit_user_profile_update', 'save_extra_user_profile_fields' );
-
-function save_extra_user_profile_fields( $user_id ) {
-
-if ( !current_user_can( 'edit_user', $user_id ) ) { return false; }
-
+function save_admin_fields( $user_id ) {
+  if ( !current_user_can( 'edit_user', $user_id ) ) { return false; }
   update_user_meta( $user_id, 'approval_status', $_POST['approval_status'] );
-
 }
