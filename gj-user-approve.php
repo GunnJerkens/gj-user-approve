@@ -9,8 +9,6 @@ Author URI: http://gunnjerkens.com
 */
 
 
-//update_user_meta('1', 'approval_status', 'Pending');
-
 add_filter('manage_users_columns', 'add_column');
 function add_column($columns) {
   $columns['approval_status'] = 'User Status';
@@ -22,7 +20,6 @@ function get_column_content($value, $column_name, $user_id) {
   $user = get_userdata( $user_id );
   if ( 'approval_status' == $column_name )
     $value = get_user_meta($user_id, 'approval_status', true);
-    //return $user_id;
     return $value;
 }
 
