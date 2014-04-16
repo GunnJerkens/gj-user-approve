@@ -8,6 +8,14 @@ Author: Gunn|Jerkens
 Author URI: http://gunnjerkens.com
 */
 
+class adminApproval {
+
+
+}
+new adminApproval();
+
+
+
 
 add_filter('manage_users_columns', 'add_column');
 function add_column($columns) {
@@ -23,10 +31,10 @@ function get_column_content($value, $column_name, $user_id) {
     return $value;
 }
 
-if(current_user_can('edit_users')) {
+//if(current_user_can('edit_users')) {
   add_action( 'show_user_profile', 'extra_user_profile_fields' );
   add_action( 'edit_user_profile', 'extra_user_profile_fields' );
-}
+//}
 
 function extra_user_profile_fields($user) {
   $status = get_user_meta($user->ID, 'approval_status', true);
