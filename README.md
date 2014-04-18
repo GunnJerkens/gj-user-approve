@@ -9,12 +9,21 @@ Add as a WordPress plugin by downloading the zip file or include as a submodule.
 
 During the registration process of a new user declare this function to append the status of 'Pending' to a new user account.
 
-`update_user_meta( $user_id, 'approval_status', 'Pending' );`
+`update_user_meta($user_id, 'approval_status', 'Pending');`
+
+To verify a user is approved for a section of the site use the `get_user_meta` function provided by WordPress.
+
+```
+if(get_user_meta($user_id, 'approval_status', true) === 'Approved') {
+    //do stuff
+}
+```
+
+Possible options include 'Approved', 'Pending', or 'Denied'.
 
 ## todo
-- create a simple function to add user_meta field 'pending'
-- create a quick boolean function for a double auth check
 - email notification of approval state
+- build into registration?
 
 ## license
 
