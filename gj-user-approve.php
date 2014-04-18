@@ -80,20 +80,3 @@ function save_admin_fields( $user_id ) {
   if ( !current_user_can( 'edit_user', $user_id ) ) { return false; }
   update_user_meta( $user_id, 'approval_status', $_POST['approval_status'] );
 }
-
-//add_action('init','lockout');
-/*function lockout() {
-  $isLoginPage = strpos($_SERVER['REQUEST_URI'], "wp-login.php") !== false;
-  $isFrontLogin = strpos($_SERVER['REQUEST_URI'], "login") !== false;
-  $isFrontRegister = strpos($_SERVER['REQUEST_URI'], "register") !== false;
-  $hostname = $_SERVER['HTTP_HOST'];
-
-  $test = is_home();
-  var_dump($test);
-  //die();
-
-  if(!is_user_logged_in() && !is_admin() && !$isLoginPage && !$isFrontLogin && !$isFrontRegister) {
-    header( 'Location: http://'.$hostname.'/login' ) ;
-    die();
-  }
-}*/
