@@ -8,6 +8,15 @@ Author: Gunn|Jerkens
 Author URI: http://gunnjerkens.com
 */
 
+function gj_admin_options() {
+  include ('admin/options.php');
+}
+function gj_admin_actions() {
+  add_menu_page( "GJ User Approve", "GJ User Approve", 'administrator', "gj_user_approve", "gj_admin_edit" );
+}
+add_action('admin_menu', 'gj_admin_actions');
+
+
 class adminApproval {
 
   function __construct() {
@@ -71,11 +80,6 @@ class adminApproval {
 
 }
 new adminApproval();
-
-function gj_admin_actions() {
-  add_menu_page( "GJ User Approve", "Settings", 'administrator', "gj_user_approve", "gj_admin_edit" );
-}
-add_action('admin_menu', 'gj_admin_actions');
 
 
 add_action( 'personal_options_update', 'save_admin_fields' );
