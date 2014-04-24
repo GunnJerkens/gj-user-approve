@@ -60,7 +60,7 @@ class adminApproval {
       $denied = 'selected';
     }
     echo '
-      <h3>Admin Options</h3>
+      <h3>GJ User Approve Options</h3>
       <table class="form-table">
         <tr>
           <th><label for="Approval Status">Approval Status</label></th>
