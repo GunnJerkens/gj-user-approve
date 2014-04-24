@@ -9,10 +9,10 @@ Author URI: http://gunnjerkens.com
 */
 
 function gj_admin_options() {
-  include ('admin/options.php');
+  include ('admin/gj-user-approve-options.php');
 }
 function gj_admin_actions() {
-  add_menu_page( "GJ User Approve", "GJ User Approve", 'administrator', "gj_user_approve", "gj_admin_edit" );
+  add_users_page( "users.php", "GJ User Approve", 'administrator', "gj_user_approve", "gj_admin_options" );
 }
 add_action('admin_menu', 'gj_admin_actions');
 
