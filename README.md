@@ -23,13 +23,13 @@ if(get_user_meta($user_id, 'approval_status', true) === 'Approved') {
 
 Possible options include 'Approved', 'Pending', or 'Denied'.
 
-### mailgun
+## email
 
-The plugin support mailgun and allows it to be configured through the admin panel of GJ User Approve.
+The plugin supports mailgun and allows it to be configured through the admin panel of GJ User Approve. Mailgun is free up to 10,000 emails and is a better option that using the server's SMTP.
 
 ## todo
-- email notification of approval state
-- build into registration?
+
+TBD
 
 ## license
 
