@@ -15,7 +15,7 @@ $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'gj_user_approve_mailgu
 
 <h2 class="nav-tab-wrapper">
   <a href="?page=gj_user_approve&tab=gj_user_approve_mailgun" class="nav-tab <?php echo $active_tab == 'gj_user_approve_mailgun' ? 'nav-tab-active' : ''; ?>">Mailgun</a>
-  <a href="?page=gj_user_approve&tab=gj_user_approve_other" class="nav-tab <?php echo $active_tab == 'gj_user_approve_other' ? 'nav-tab-active' : ''; ?>">Other</a>
+  <a href="?page=gj_user_approve&tab=gj_user_approve_settings" class="nav-tab <?php echo $active_tab == 'gj_user_approve_settings' ? 'nav-tab-active' : ''; ?>">Settings</a>
 </h2>
 
 <div class="wrap"><?php
@@ -30,8 +30,8 @@ $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'gj_user_approve_mailgu
   }
 
   if( $active_tab == 'gj_user_approve_other' ) {
-    if (file_exists(__DIR__. '/gj-user-approve-other.php')) {
-      include_once(__DIR__. '/gj-user-approve-other.php');
+    if (file_exists(__DIR__. '/gj-user-approve-settings.php')) {
+      include_once(__DIR__. '/gj-user-approve-settings.php');
     }
     else {
       echo 'File is missing';  
