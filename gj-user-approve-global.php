@@ -1,6 +1,7 @@
 <?php
 
 
+
 show_admin_bar(false);
 
 add_action('admin_init', 'disableDashboard');

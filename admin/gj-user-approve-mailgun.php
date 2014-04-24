@@ -82,4 +82,3 @@ if(isset($_POST['gj_hidden']) && $_POST['gj_hidden'] == 'gj_form_update_options'
     <input class="btn" type="submit" name="Submit" value="<?php _e('Update Options', 'gj_trdom' ) ?>" />
 
   </form>
-
