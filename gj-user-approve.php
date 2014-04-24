@@ -133,9 +133,6 @@ function sendMailgun($email){
 
   $result = curl_exec($curl);
 
-  var_dump($result);
-  exit();
-
   curl_close($curl);
   return $result;
 }
