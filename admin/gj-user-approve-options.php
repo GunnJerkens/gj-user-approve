@@ -29,7 +29,7 @@ $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'gj_user_approve_mailgu
     }
   }
 
-  if( $active_tab == 'gj_user_approve_other' ) {
+  if( $active_tab == 'gj_user_approve_settings' ) {
     if (file_exists(__DIR__. '/gj-user-approve-settings.php')) {
       include_once(__DIR__. '/gj-user-approve-settings.php');
     }
