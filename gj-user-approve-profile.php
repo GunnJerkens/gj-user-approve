@@ -33,32 +33,23 @@ class gjuaProfile {
 
     $status = get_user_meta($user->ID, 'approval_status', true);
 
-    $approved = '';
-    $pending = '';
-    $denied = '';
+    $userStates = array("Approved", "Pending", "Denied"); ?>
 
-    if($status === 'Approved') {
-      $approved = 'selected';
-    } else if ($status === 'Pending') {
-      $pending = 'selected';
-    } else if ($status === 'Denied' ) {
-      $denied = 'selected';
-    }
-    echo '
-      <h3>GJ User Approve Options</h3>
-      <table class="form-table">
-        <tr>
-          <th><label for="Approval Status">Approval Status</label></th>
-          <td>
-            <select name="approval_status">
-              <option value="Approved" '.$approved.'>Approved</option>
-              <option value="Pending" '.$pending.'>Pending</option>
-              <option value="Denied" '.$denied.'>Denied</option>
-            </select>
-          </td>
-        </tr>
-      </table>
-    ';
+    <h3>GJ User Approve Options</h3>
+    <table class="form-table">
+      <tr>
+        <th><label for="Approval Status">Approval Status</label></th>
+        <td>
+          <select name="approval_status"><?php
+            foreach($userStates as $state) {
+
+              echo '<option value="'.$state.'" '.($status === $state ? 'selected="selected"': '').'>'.$state.'</option>';
+
+            } ?>
+          </select>
+        </td>
+      </tr>
+    </table><?php
 
   }
 

@@ -15,18 +15,18 @@ class gjuaUpdate {
       return false;
     }
 
-    update_user_meta($user_id, 'approval_status', $_POST['approval_status']);
-
+    $status = $_POST['approval_status'];
+    update_user_meta($user_id, 'approval_status', $status);
     $flag = get_user_meta($user_id, 'approval_flag', true);
 
-    if($flag === "" OR $flag === "0") {
+    if($status === 'Approved' && $flag === "" || $flag === "0" ) {
 
       $userdata = get_userdata($user_id);
-      sendMailgun($userdata->user_email);
-
+      $this->sendMailgun($userdata->user_email);
       update_user_meta( $user_id, 'approval_flag', 1 );
 
     }
+
   }
 
   function sendMailgun($email){
