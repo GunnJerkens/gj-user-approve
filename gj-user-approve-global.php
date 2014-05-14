@@ -6,7 +6,7 @@ if (get_option('disable_toolbar')) {
 
 if (get_option('disable_dashboard')) {
 
-  if(!function_exists(disableDashboard)) {
+  if(!function_exists('disableDashboard')) {
 
     add_action('admin_init', 'disableDashboard');
 
