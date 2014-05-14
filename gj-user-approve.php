@@ -12,12 +12,19 @@ require_once('gj-user-approve-profile.php');
 require_once('gj-user-approve-update.php');
 require_once('gj-user-approve-global.php');
 
-add_action('admin_menu', 'gj_admin_actions');
+class gj_user_approve {
 
-function gj_admin_actions() {
-  add_users_page( "users.php", "GJ User Approve", 'administrator', "gj_user_approve", "gj_admin_options" );
-}
+  function __construct() {
+    add_action('admin_menu', array(&$this,'gj_user_approve_admin_actions'));
+  }
 
-function gj_admin_options() {
-  include ('admin/gj-user-approve-options.php');
+  function gj_user_approve_admin_actions() {
+    add_users_page("users.php", "GJ User Approve", 'administrator', "gj_user_approve", "gj_user_approve_admin_options");
+  }
+
+  function gj_user_approve_admin_options() {
+    include ('admin/gj-user-approve-options.php');
+  }
+
 }
+new gj_user_approve();
