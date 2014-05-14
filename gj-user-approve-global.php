@@ -13,4 +13,5 @@ if (get_option('disable_dashboard')) {
       wp_redirect(home_url()); exit;
     }
   }
+
 }
