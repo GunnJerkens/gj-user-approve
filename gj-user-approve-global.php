@@ -6,12 +6,16 @@ if (get_option('disable_toolbar')) {
 
 if (get_option('disable_dashboard')) {
 
-  add_action('admin_init', 'disableDashboard');
+  if(!function_exists(disableDashboard)) {
 
-  function disableDashboard() {
-    if (!current_user_can('manage_options') && $_SERVER['DOING_AJAX'] != '/wp-admin/admin-ajax.php') {
-      wp_redirect(home_url()); exit;
+    add_action('admin_init', 'disableDashboard');
+
+    function disableDashboard() {
+      if (!current_user_can('manage_options') && $_SERVER['DOING_AJAX'] != '/wp-admin/admin-ajax.php') {
+        wp_redirect(home_url()); exit;
+      }
     }
+
   }
 
 }

@@ -43,7 +43,7 @@ class gjuaProfile {
           <select name="approval_status"><?php
             foreach($userStates as $state) {
 
-              echo '<option value="'.$state.'" '.($status === $state ? 'selected="selected"': '').'>'.$state.'</option>';
+              echo '<option value="'.$state.'" '.($status === $state ? 'selected="selected"' : '').'>'.$state.'</option>';
 
             } ?>
           </select>
