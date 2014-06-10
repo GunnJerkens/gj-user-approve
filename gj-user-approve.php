@@ -19,7 +19,7 @@ class gj_user_approve {
   }
 
   function gj_user_approve_admin_actions() {
-    add_users_page("users.php", "GJ User Approve", 'administrator', "gj_user_approve", "gj_user_approve_admin_options");
+    add_users_page("users.php", "GJ User Approve", 'administrator', "gj_user_approve", array($this, 'gj_user_approve_admin_options'));
   }
 
   function gj_user_approve_admin_options() {
